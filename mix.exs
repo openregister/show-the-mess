@@ -19,7 +19,11 @@ defmodule ShowTheMess.Mixfile do
   def application do
     [mod: {ShowTheMess, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex,
+                    :httpoison,
+                    :con_cache,
+                   ]
+    ]
   end
 
   # Specifies which paths to compile per environment.
