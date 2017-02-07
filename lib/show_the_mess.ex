@@ -14,6 +14,7 @@ defmodule ShowTheMess do
       supervisor(ShowTheMess.Endpoint, []),
       # Start your own worker by calling: ShowTheMess.Worker.start_link(arg1, arg2, arg3)
       # worker(ShowTheMess.Worker, [arg1, arg2, arg3]),
+      worker(ConCache, [[], [name: :my_cache]]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
