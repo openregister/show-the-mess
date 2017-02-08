@@ -13,7 +13,7 @@ defmodule ShowTheMess.PageController do
       data_list: data_list,
       data_list_by_id: data_list |> Enum.group_by(& &1 |> Map.get(String.to_atom(register))),
       maps_list: maps_list,
-      description: maps_index,
+      maps_index: maps_index,
       register: register
   end
 end
