@@ -16,4 +16,9 @@ defmodule ShowTheMess.PageController do
       maps_index: maps_index,
       register: register
   end
+
+  def clear_cache(conn, _params) do
+    RemoteData.clear_cache()
+    text conn, "Cache cleared"
+  end
 end
