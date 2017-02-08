@@ -21,7 +21,15 @@ defmodule RemoteData do
   end
 
   def maps_index maps_path do
-    ConCache.get_or_store(:my_cache, "index", get_maps_index(maps_path))
+    index_data = ConCache.get_or_store(:my_cache, maps_path, get_maps_index(maps_path))
+    for tuple <- index_data do
+      {key, map} = tuple
+      case map do
+        %{"description" => _, "key" => _} -> ; # valid
+        _ -> raise("Map file data must have description and key: #{inspect(map)}")
+      end
+    end
+    index_data
   end
 
   defp maps_url_and_path file, maps_path do
