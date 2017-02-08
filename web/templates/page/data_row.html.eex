@@ -1,0 +1,12 @@
+<tr class=''>
+  <td></td>
+  <% code = Map.get(@record, key(@register)) %>
+  <td class=''><%= "#{code} #{@record.end_date}" %></td>
+  <td class=''><%= @record.name %></td>
+  <%= for [file, list] <- @maps_list do %>
+    <td class=''>
+      <% item = match_from_list(list, code, @register) %>
+      <%= raw item_label(item, file, @record.name, @maps_index) %>
+    </td>
+  <% end %>
+</tr>

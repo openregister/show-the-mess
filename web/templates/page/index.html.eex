@@ -7,3 +7,11 @@
               register: @register
               %>
 </div>
+<%= render "comparison_table.html",
+    title: @register <> " codes",
+    maps_index: @maps_index,
+    maps_list: @maps_list,
+    data_list: @data_list,
+    data_list_by_id: @data_list_by_id,
+    register: @register
+    %>
