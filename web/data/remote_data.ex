@@ -12,10 +12,11 @@ defmodule RemoteData do
     ConCache.get_or_store(:my_cache, register, get_list(url, file_path, register))
   end
 
-  def maps_list maps_path do
+  def maps_list maps_path, register do
     maps_path
     |> maps_index()
     |> Map.keys
+    |> Enum.reject(& &1 == register)
     |> Enum.map(&( [&1, map_list(&1, maps_path)] ))
   end
 

@@ -7,7 +7,7 @@ defmodule ShowTheMess.PageController do
     maps_path = params |> Map.get("maps", "prison-data/master/maps")
 
     data_list = RemoteData.data_list(register, data_file)
-    maps_list = RemoteData.maps_list(maps_path)
+    maps_list = RemoteData.maps_list(maps_path, register)
     maps_index = RemoteData.maps_index(maps_path)
     render conn, "index.html",
       data_list: data_list,
