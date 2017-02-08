@@ -1,6 +1,7 @@
 <table id="lists" class="tablesorter">
   <thead>
     <tr>
+      <th></th>
       <th class='name'>File</th>
       <th>Description</th>
       <th class='count'>Total Count</th>
@@ -9,6 +10,7 @@
   </thead>
   <tbody>
     <tr id='record'>
+      <td></td>
       <td class='name'><%= @register %></td>
       <td><%= @description[@register] %></td>
       <td class='count'><a href=''><%= Enum.count(@data_list) %></a></td>
@@ -16,6 +18,7 @@
     </tr>
     <%= for [file, list] <- @maps_list do %>
     <tr id='<%= file %>'>
+      <td></td>
       <td class='name'><%= file %></td>
       <td><%= @description[file]["description"] %></td>
       <td class='count'><a href=''><%= Enum.count(list) %></a></td>
