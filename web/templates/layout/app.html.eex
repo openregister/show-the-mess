@@ -9,7 +9,6 @@
 
     <title>OpenRegister <%= @register %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link href="https://govuk-elements.herokuapp.com/public/stylesheets/elements-page.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
