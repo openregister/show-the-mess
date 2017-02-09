@@ -9,6 +9,8 @@ heroku create --region eu \
        --buildpack "https://github.com/HashNuke/heroku-buildpack-elixir.git" \
        --org <org>
 
+heroku buildpacks:add https://github.com/gjaldon/heroku-buildpack-phoenix-static
+
 heroku apps:rename <your-app-name>
 
 heroku addons:create heroku-postgresql:hobby-dev
