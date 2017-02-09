@@ -16,7 +16,11 @@
       <header class="header">
         <h1 class="heading-xlarge">
           <span class="heading-secondary">OpenRegister</span>
-          <%= @register %> data report
+          <%= if is_nil(@register) do %>
+            Data lists comparisons
+          <% else %>
+            <%= @register %> data report
+          <% end %>
         </h1>
       </header>
 

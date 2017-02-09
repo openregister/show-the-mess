@@ -1,17 +1,11 @@
-<div class="grid-row">
-   <%= render "data_summary_table.html",
-              maps_index: @maps_index,
-              data_list: @data_list,
-              maps_list: @maps_list,
-              data_list_by_id: @data_list_by_id,
-              register: @register
-              %>
-</div>
-<%= render "comparison_table.html",
-    title: @register <> " codes",
-    maps_index: @maps_index,
-    maps_list: @maps_list,
-    data_list: @data_list,
-    data_list_by_id: @data_list_by_id,
-    register: @register
-    %>
+<%= if is_nil(@register) do %>
+  <%= render "contents_list.html"%>
+<% else %>
+  <%= render "data_report.html",
+        maps_index: @maps_index,
+        data_list: @data_list,
+        maps_list: @maps_list,
+        data_list_by_id: @data_list_by_id,
+        register: @register
+  %>
+<% end %>
