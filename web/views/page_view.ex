@@ -26,8 +26,15 @@ defmodule ShowTheMess.PageView do
     |> Enum.map(&List.first/1)
   end
 
+  def link_key("local-authority-eng"), do: key("local-authority")
+  def link_key(primary_key), do: key(primary_key)
+
+  def match_code("local-authority-eng", code), do: "local-authority-eng:#{code}"
+  def match_code(primary_key, code), do: code
+
   def match_from_list list, code, primary_key do
-    key = key(primary_key)
+    key = link_key(primary_key)
+    code = match_code(primary_key, code)
     list
     |> Enum.find(& Map.get(&1, key) == code)
   end
@@ -36,9 +43,9 @@ defmodule ShowTheMess.PageView do
   def item_label item, file, name, maps_index do
     code = maps_index[file]["key"]
     try do
-      [lists_code_for(item, file, maps_index), lists_name_for(item, name, code)]
+      item_code = lists_code_for(item, file, maps_index)
+      [item_code, lists_name_for(item, name, code, item_code)]
       |> Enum.filter(&(&1))
-      |> Enum.uniq()
       |> Enum.join(" <br /> ")
     rescue
       KeyError -> ""
@@ -54,18 +61,22 @@ defmodule ShowTheMess.PageView do
     name |> String.downcase
   end
 
-  def lists_name_for(nil, name, code), do: nil
-  def lists_name_for item, name, code do
+  def lists_name_for(nil, _, _, _), do: nil
+  def lists_name_for item, name, code, item_code do
     item_name = try do
                   item.name
                 rescue
-                  KeyError -> item |> Map.get(key(code))
-                  UndefinedFunctionError -> item |> Map.get(key(code))
+                  KeyError -> item |> Map.get(link_key(code))
+                  UndefinedFunctionError -> item |> Map.get(link_key(code))
                 end
-    if item_name == normalise(name) do
+    if normalise(item_name) == normalise(name) do
       nil
     else
-      item_name
+      if item_code == item_name do
+        nil
+      else
+        "<b>" <> item_name <> "</b>"
+      end
     end
   end
 
