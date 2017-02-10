@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <div class="container">
+    <main id="<%= content_id(@register)%>" role="main" tabindex="-1">
       <header class="header">
         <h1 class="heading-xlarge">
           <span class="heading-secondary">OpenRegister</span>
@@ -31,7 +31,7 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    </div> <!-- /container -->
+    </main> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

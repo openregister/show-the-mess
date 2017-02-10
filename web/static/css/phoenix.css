@@ -1,22 +1,23 @@
-.grid-row:after, #content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
-  content: "";
-  display: block;
-  clear: both;
+#content, #register-content {
+  margin: 0 15px;
 }
 
 #content {
   max-width: 960px;
-  margin: 0 15px;
+}
+
+#register-content {
+  max-width: 90%;
 }
 
 @media (min-width: 641px) {
-  #content {
+  #content, #register-content {
     margin: 0 30px;
   }
 }
 
 @media (min-width: 1020px) {
-  #content {
+  #content, #register-content {
     margin: 0 auto;
   }
 }
@@ -25,52 +26,7 @@
   margin: 0 -15px;
 }
 
-.grid-row:after, #content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.grid-row:after, #content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.grid-row:after, #content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-#content {
-  max-width: 960px;
-  margin: 0 15px;
-}
-
-@media (min-width: 641px) {
-  #content {
-    margin: 0 30px;
-  }
-}
-
-@media (min-width: 1020px) {
-  #content {
-    margin: 0 auto;
-  }
-}
-
-.grid-row {
-  margin: 0 -15px;
-}
-
-.grid-row:after, #content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.grid-row:after, #content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
+.grid-row:after, #content:after, #register-content:after, .notice:after, .panel:after, fieldset:after, .form-section:after, .form-group:after, .form-block:after, .breadcrumbs ol:after, .example:after {
   content: "";
   display: block;
   clear: both;
@@ -223,13 +179,13 @@ legend {
   display: table;
 }
 
-#content {
+#content, #register-content {
   padding-bottom: 30px;
   outline: none;
 }
 
 @media (min-width: 769px) {
-  #content {
+  #content, #register-content {
     padding-bottom: 90px;
   }
 }
@@ -2149,14 +2105,14 @@ input[type=number] {
   font-family: "nta", Arial, sans-serif;
   font-weight: 400;
   text-transform: none;
-  font-size: 14px;
-  line-height: 1.1428571429;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 @media (min-width: 641px) {
   .list-contents li {
-    font-size: 16px;
-    line-height: 1.25;
+    font-size: 19px;
+    line-height: 1.3157894737;
   }
 }
 
