@@ -34,10 +34,10 @@ config :logger, :console, format: "[$level] $message\n"
 config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
-config :show_the_mess, ShowTheMess.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: System.get_env("DATABASE_NAME") || "show_the_mess_dev",
-  hostname: "localhost",
-  pool_size: 10
+#config :show_the_mess, ShowTheMess.Repo,
+#  adapter: Ecto.Adapters.Postgres,
+#  username: "postgres",
+#  password: "postgres",
+#  database: System.get_env("DATABASE_NAME") || "show_the_mess_dev",
+#  hostname: "localhost",
+#  pool_size: 10
