@@ -7,20 +7,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello ShowTheMess!</title>
+    <title>OpenRegister <%= @register %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link href="https://govuk-elements.herokuapp.com/public/stylesheets/elements-page.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
-    <div class="container">
+    <main id="<%= content_id(@register)%>" role="main" tabindex="-1">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+        <h1 class="heading-xlarge">
+          <span class="heading-secondary">OpenRegister</span>
+          <%= if is_nil(@register) do %>
+            Data lists comparisons
+          <% else %>
+            <%= @register %> data report
+          <% end %>
+        </h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
@@ -30,7 +31,7 @@
         <%= render @view_module, @view_template, assigns %>
       </main>
 
-    </div> <!-- /container -->
+    </main> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

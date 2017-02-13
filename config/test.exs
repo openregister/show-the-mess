@@ -10,10 +10,10 @@ config :show_the_mess, ShowTheMess.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :show_the_mess, ShowTheMess.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "show_the_mess_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+#config :show_the_mess, ShowTheMess.Repo,
+#  adapter: Ecto.Adapters.Postgres,
+#  username: "postgres",
+#  password: "postgres",
+#  database: "show_the_mess_test",
+#  hostname: "localhost",
+#  pool: Ecto.Adapters.SQL.Sandbox

@@ -4,7 +4,7 @@ defmodule ShowTheMess.Mixfile do
   def project do
     [app: :show_the_mess,
      version: "0.0.1",
-     elixir: "~> 1.2",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -46,8 +46,8 @@ defmodule ShowTheMess.Mixfile do
      {:con_cache, "~> 0.11.0"},
      {:data_morph, git: "https://github.com/robmckinnon/data_morph.git"},
      {:httpoison, "~> 0.8.3"},
-     { :yaml_elixir, "~> 1.0.0" },
-     { :yamerl, github: "yakaz/yamerl" },
+     {:yaml_elixir, "~> 1.0.0" },
+     {:yamerl, "~> 0.4.0" },
     ]
   end
 

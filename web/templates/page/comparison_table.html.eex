@@ -1,0 +1,26 @@
+<div class="grid-row">
+  <div class="column-half">
+    <h2 class="heading-large"><%= @title %></h2>
+  </div>
+  <table id="names" class="tablesorter">
+    <thead>
+      <tr>
+        <th></th>
+        <th class=''><%= @register%></th>
+        <th class=''>name</th>
+        <%= for [file, _] <- @maps_list do %>
+        <th><%= file %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for record <- @data_list do %>
+        <%= render "data_row.html",
+              maps_index: @maps_index,
+              record: record,
+              register: @register,
+              maps_list: @maps_list %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

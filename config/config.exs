@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :show_the_mess,
-  ecto_repos: [ShowTheMess.Repo]
+  ecto_repos: []
+#  ecto_repos: [ShowTheMess.Repo]
 
 # Configures the endpoint
 config :show_the_mess, ShowTheMess.Endpoint,

@@ -1,0 +1,29 @@
+<table id="lists" class="tablesorter">
+  <thead>
+    <tr>
+      <th></th>
+      <th class='name'>File</th>
+      <th>Description</th>
+      <th class='count'>Total Count</th>
+      <th>Fields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr id='record'>
+      <td></td>
+      <td class='name'><%= @register %></td>
+      <td><%= description(@maps_index, @register) %></td>
+      <td class='count'><a href=''><%= Enum.count(@data_list) %></a></td>
+      <td><%= @data_list |> fields(@register) %></td>
+    </tr>
+    <%= for [file, list] <- @maps_list do %>
+    <tr id='<%= file %>'>
+      <td></td>
+      <td class='name'><%= file %></td>
+      <td><%= description(@maps_index, file) %></td>
+      <td class='count'><a href=''><%= Enum.count(list) %></a></td>
+      <td><%= list |> fields(@register) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
