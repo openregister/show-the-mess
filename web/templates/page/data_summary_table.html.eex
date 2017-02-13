@@ -12,7 +12,7 @@
     <tr id='record'>
       <td></td>
       <td class='name'><%= @register %></td>
-      <td><%= @maps_index[@register]["description"] %></td>
+      <td><%= description(@maps_index, @register) %></td>
       <td class='count'><a href=''><%= Enum.count(@data_list) %></a></td>
       <td><%= @data_list |> fields(@register) %></td>
     </tr>
@@ -20,7 +20,7 @@
     <tr id='<%= file %>'>
       <td></td>
       <td class='name'><%= file %></td>
-      <td><%= @maps_index[file]["description"] %></td>
+      <td><%= description(@maps_index, file) %></td>
       <td class='count'><a href=''><%= Enum.count(list) %></a></td>
       <td><%= list |> fields(@register) %></td>
     </tr>

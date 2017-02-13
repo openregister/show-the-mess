@@ -20,6 +20,22 @@ defmodule ShowTheMess.PageView do
     end
   end
 
+  def description maps_index, register do
+    maps_value(maps_index, register, "description")
+  end
+
+  def maps_key maps_index, file do
+    maps_value(maps_index, file, "key")
+  end
+
+  def maps_value maps_index, register, field do
+    maps_index
+    |> List.keyfind(register, 0)
+    |> Tuple.to_list
+    |> List.last
+    |> Map.get(field)
+  end
+
   def records data_list_by_id do
     data_list_by_id
     |> Map.values
@@ -41,7 +57,7 @@ defmodule ShowTheMess.PageView do
 
   def item_label(nil, file, name, maps_index), do: nil
   def item_label item, file, name, maps_index do
-    code = maps_index[file]["key"]
+    code = key( maps_key(maps_index, file) )
     try do
       item_code = lists_code_for(item, file, maps_index)
       [item_code, lists_name_for(item, name, code, item_code)]
@@ -54,7 +70,7 @@ defmodule ShowTheMess.PageView do
 
   def lists_code_for(nil, file, maps_index), do: nil
   def lists_code_for item, file, maps_index do
-    Map.get item, key(maps_index[file]["key"])
+    Map.get item, key( maps_key(maps_index, file) )
   end
 
   defp normalise name do

@@ -15,13 +15,21 @@ defmodule RemoteData do
   def maps_list maps_path, register do
     maps_path
     |> maps_index()
-    |> Map.keys
-    |> Enum.reject(& &1 == register)
+    |> Enum.map(& &1 |> Tuple.to_list |> List.first)
+    |> Enum.reject(& &1 == register )
     |> Enum.map(&( [&1, map_list(&1, maps_path)] ))
   end
 
+  def maps_order yaml do
+    :yamerl_constr.string(yaml)
+    |> List.first
+    |> Enum.map(& &1 |> Tuple.to_list |> List.first |> to_string)
+  end
+
   def maps_index maps_path do
-    index_data = ConCache.get_or_store(:my_cache, maps_path, get_maps_index(maps_path))
+    index_yaml = ConCache.get_or_store(:my_cache, maps_path, get_maps_index(maps_path))
+    index_data = index_yaml |> YamlElixir.read_from_string
+    index_order = index_yaml |> maps_order
     for tuple <- index_data do
       {key, map} = tuple
       case map do
@@ -29,7 +37,7 @@ defmodule RemoteData do
         _ -> raise("Map file data must have description and key: #{inspect(map)}")
       end
     end
-    index_data
+    index_order |> Enum.map(& {&1, Map.get(index_data, &1)})
   end
 
   defp maps_url_and_path file, maps_path do
@@ -38,7 +46,7 @@ defmodule RemoteData do
     [url, file_path]
   end
 
-  defp map_list file, maps_path do
+  def map_list file, maps_path do
     [url, file_path] = maps_url_and_path("#{file}.tsv", maps_path)
     ConCache.get_or_store(:my_cache, file, get_list(url, file_path, file))
   end
@@ -48,7 +56,6 @@ defmodule RemoteData do
       [url, file_path] = maps_url_and_path("index.yml", maps_path)
       url
       |> retrieve_data(file_path)
-      |> YamlElixir.read_from_string
     end
   end
 
