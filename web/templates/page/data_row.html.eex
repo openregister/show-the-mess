@@ -1,7 +1,8 @@
 <tr class=''>
   <td></td>
   <% code = Map.get(@record, key(@register)) %>
-  <td class=''><%= "#{code} #{@record.end_date}" %></td>
+  <td class=''><%= code %></td>
+  <td class=''><%= @record.end_date %></td>
   <td class=''><%= @record.name %></td>
   <%= for [file, list] <- @maps_list do %>
     <td class=''>
