@@ -96,4 +96,7 @@ defmodule ShowTheMess.PageView do
     end
   end
 
+  def end_date_count list do
+    Enum.count(list, fn(x) -> (x.end_date |> String.length) == 0 end)
+  end
 end
