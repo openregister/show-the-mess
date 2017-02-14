@@ -6,8 +6,12 @@ defmodule RemoteData do
     end
   end
 
+  def data_url data_file do
+    "https://raw.githubusercontent.com/openregister/#{data_file}"
+  end
+
   def data_list register, data_file do
-    url = "https://raw.githubusercontent.com/openregister/#{data_file}"
+    url = data_url data_file
     file_path = "../#{data_file}" |> String.replace("/master","")
     ConCache.get_or_store(:my_cache, register, get_list(url, file_path, register))
   end
@@ -40,20 +44,24 @@ defmodule RemoteData do
     index_order |> Enum.map(& {&1, Map.get(index_data, &1)})
   end
 
-  defp maps_url_and_path file, maps_path do
-    url = "https://raw.githubusercontent.com/openregister/#{maps_path}/#{file}"
+  def maps_url maps_path, file do
+    "https://raw.githubusercontent.com/openregister/#{maps_path}/#{file}"
+  end
+
+  defp maps_url_and_path maps_path, file do
+    url = maps_url(maps_path, file)
     file_path = "../#{maps_path}/#{file}" |> String.replace("/master","")
     [url, file_path]
   end
 
   def map_list file, maps_path do
-    [url, file_path] = maps_url_and_path("#{file}.tsv", maps_path)
+    [url, file_path] = maps_url_and_path(maps_path, "#{file}.tsv")
     ConCache.get_or_store(:my_cache, file, get_list(url, file_path, file))
   end
 
   defp get_maps_index maps_path do
     fn () ->
-      [url, file_path] = maps_url_and_path("index.yml", maps_path)
+      [url, file_path] = maps_url_and_path(maps_path, "index.yml")
       url
       |> retrieve_data(file_path)
     end

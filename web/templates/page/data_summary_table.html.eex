@@ -11,17 +11,17 @@
   <tbody>
     <tr id='record'>
       <td></td>
-      <td class='name'><%= @register %></td>
+      <td class='name'><%= link @register, to: @data_url %></td>
       <td><%= description(@maps_index, @register) %></td>
-      <td class='count'><a href=''><%= Enum.count(@data_list) %></a></td>
+      <td class='count'><%= Enum.count(@data_list) %></td>
       <td><%= @data_list |> fields(@register) %></td>
     </tr>
     <%= for [file, list] <- @maps_list do %>
     <tr id='<%= file %>'>
       <td></td>
-      <td class='name'><%= file %></td>
+      <td class='name'><%= link file, to: RemoteData.maps_url(@maps_path, "#{file}.tsv") %></td>
       <td><%= description(@maps_index, file) %></td>
-      <td class='count'><a href=''><%= Enum.count(list) %></a></td>
+      <td class='count'><%= Enum.count(list) %></td>
       <td><%= list |> fields(@register) %></td>
     </tr>
     <% end %>
