@@ -4,6 +4,7 @@
   <%= render "data_report.html",
         maps_index: @maps_index,
         data_list: @data_list,
+        data_url: @data_url,
         maps_list: @maps_list,
         data_list_by_id: @data_list_by_id,
         register: @register

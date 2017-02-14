@@ -6,8 +6,12 @@ defmodule RemoteData do
     end
   end
 
+  def data_url data_file do
+    "https://raw.githubusercontent.com/openregister/#{data_file}"
+  end
+
   def data_list register, data_file do
-    url = "https://raw.githubusercontent.com/openregister/#{data_file}"
+    url = data_url data_file
     file_path = "../#{data_file}" |> String.replace("/master","")
     ConCache.get_or_store(:my_cache, register, get_list(url, file_path, register))
   end
