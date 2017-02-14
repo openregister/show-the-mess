@@ -21,6 +21,7 @@ defmodule ShowTheMess.PageController do
         data_url: data_url,
         maps_list: maps_list,
         maps_index: maps_index,
+        maps_path: maps_path,
         register: register
     end
   end
