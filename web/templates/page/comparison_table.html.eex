@@ -7,6 +7,7 @@
       <tr>
         <th></th>
         <th class=''><%= @register%></th>
+        <th class=''>end-date</th>
         <th class=''>name</th>
         <%= for [file, _] <- @maps_list do %>
         <th><%= file %></th>
