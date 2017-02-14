@@ -4,8 +4,8 @@
       <th></th>
       <th class='name'>File</th>
       <th>Description</th>
-      <th class='count'>Total Count</th>
-      <th>Fields</th>
+      <th class='count'>Without end-date count</th>
+      <th class='count'>Total count</th>
     </tr>
   </thead>
   <tbody>
@@ -13,16 +13,16 @@
       <td></td>
       <td class='name'><%= link @register, to: @data_url %></td>
       <td><%= description(@maps_index, @register) %></td>
+      <td class='count'><%= end_date_count(@data_list) %></td>
       <td class='count'><%= Enum.count(@data_list) %></td>
-      <td><%= @data_list |> fields(@register) %></td>
     </tr>
     <%= for [file, list] <- @maps_list do %>
     <tr id='<%= file %>'>
       <td></td>
       <td class='name'><%= link file, to: RemoteData.maps_url(@maps_path, "#{file}.tsv") %></td>
       <td><%= description(@maps_index, file) %></td>
+      <td class='count'></td>
       <td class='count'><%= Enum.count(list) %></td>
-      <td><%= list |> fields(@register) %></td>
     </tr>
     <% end %>
   </tbody>
