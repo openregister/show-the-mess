@@ -46,7 +46,7 @@ defmodule ShowTheMess.PageView do
   def link_key(primary_key), do: key(primary_key)
 
   def match_code("local-authority-eng", code), do: "local-authority-eng:#{code}"
-  def match_code(primary_key, code), do: code
+  def match_code(_, code), do: code
 
   def match_from_list list, code, primary_key do
     key = link_key(primary_key)
@@ -55,37 +55,50 @@ defmodule ShowTheMess.PageView do
     |> Enum.find(& Map.get(&1, key) == code)
   end
 
-  def item_label(nil, file, name, maps_index), do: nil
-  def item_label item, file, name, maps_index do
+  def item_label(nil, _, _, _), do: nil
+  def item_label item, file, record_name, maps_index do
     code = key( maps_key(maps_index, file) )
     try do
-      item_code = lists_code_for(item, file, maps_index)
-      [item_code, lists_name_for(item, name, code, item_code)]
-      |> Enum.filter(&(&1))
+      item_code = Map.get item, key( maps_key(maps_index, file) )
+      item_code_display = lists_code_for(item, record_name, item_code, code, file, maps_index)
+      [item_code_display, lists_name_for(item, record_name, code, item_code)]
+      |> Enum.reject(& is_nil/1)
       |> Enum.join(" <br /> ")
     rescue
       KeyError -> ""
     end
   end
 
-  def lists_code_for(nil, file, maps_index), do: nil
-  def lists_code_for item, file, maps_index do
-    Map.get item, key( maps_key(maps_index, file) )
+  def lists_code_for(nil, _, _, _, _, _), do: nil
+  def lists_code_for item, record_name, item_code, code, file, maps_index do
+    if normalise(item_code) == normalise(record_name) do
+      "”"
+    else
+      if item_code == item_name(item, code) do
+        "<b>" <> item_code <> "</b>"
+      else
+        item_code
+      end
+    end
   end
 
   defp normalise name do
     name |> String.downcase
   end
 
+  defp item_name item, code do
+    try do
+      item.name
+    rescue
+      KeyError -> item |> Map.get(link_key(code))
+      UndefinedFunctionError -> item |> Map.get(link_key(code))
+    end
+  end
+
   def lists_name_for(nil, _, _, _), do: nil
-  def lists_name_for item, name, code, item_code do
-    item_name = try do
-                  item.name
-                rescue
-                  KeyError -> item |> Map.get(link_key(code))
-                  UndefinedFunctionError -> item |> Map.get(link_key(code))
-                end
-    if normalise(item_name) == normalise(name) do
+  def lists_name_for item, record_name, code, item_code do
+    item_name = item_name(item, code)
+    if normalise(item_name) == normalise(record_name) do
       nil
     else
       if item_code == item_name do
