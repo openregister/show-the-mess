@@ -2,7 +2,7 @@
   <div class="column-two-thirds">
     Contents
     <ul class="list list-contents">
-      <li><a href="/?register=prison&data=prison-data/master/data/discovery/prison/prisons.tsv&maps=prison-data/master/maps">Prisons in England and Wales</a></li>
+      <li><a href="/?register=prison&data=prison-data/master/data/prison/prison.tsv&maps=prison-data/master/maps">Prisons in England and Wales</a></li>
       <li><a href="/?register=local-authority-eng&data=local-authority-data/master/data/local-authority-eng/local-authorities.tsv&maps=local-authority-data/master/maps">Local authorities in England</a></li>
       <li><a href="/?register=registration-district&data=registration-district-data/master/data/registration-district/registration-district.tsv&maps=registration-district-data/master/maps">Registration districts in England and Wales</a></li>
     </ul>
